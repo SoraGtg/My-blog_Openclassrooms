@@ -1,0 +1,12 @@
+<li [ngClass]="{'list-group-item': true,
+                 'list-group-item-success': post.votes > 0,
+                 'list-group-item-danger': post.votes < 0}">
+  <p align="right">{{ post.postedOn | date: 'MM/dd/yyyy, HH:MM a'}}</p>
+  <h2>{{ post.title }}</h2>
+  <h4>{{ post.message }}</h4>
+  <div class="row">
+    <button class="btn btn-success"
+            (click)="OnVote(true)"> I love it !</button>
+    <button class="btn btn-danger" (click)="OnVote(false)">I hate it !</button>
+  </div>
+</li>
