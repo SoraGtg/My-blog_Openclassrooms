@@ -1,24 +1,42 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PostComponent } from './post/post.component';
-import { PostListComponentComponent } from './post-list-component/post-list-component.component';
-import { PostListItemComponentComponent } from './post-list-item-component/post-list-item-component.component';
+import { PostListComponent } from './post-list/post-list-component';
+import { PostListItemComponent } from './post-list-item/post-list-item-component';
+import {RouterModule, Routes} from '@angular/router';
+import { NewPostComponent } from './new-post/new-post.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {PostsService} from './services/posts.service';
+import { HeaderComponent } from './header/header.component';
+import {DatePipe} from '@angular/common';
+
+const appRoutes: Routes = [
+  { path: 'posts', component: PostListComponent },
+  { path: 'new', component: NewPostComponent },
+  { path: '', redirectTo: 'posts', pathMatch: 'full' },
+  { path: '**', redirectTo: 'posts' }
+]
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostComponent,
-    PostListComponentComponent,
-    PostListItemComponentComponent
+    PostListComponent,
+    PostListItemComponent,
+    NewPostComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    PostsService,
+    DatePipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

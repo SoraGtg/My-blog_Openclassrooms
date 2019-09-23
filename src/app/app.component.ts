@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {PostComponent} from './post/post.component';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,18 @@ import {PostComponent} from './post/post.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-
-  posts = [
-    new PostComponent("New challenges", "I love these new challenges on kaggle !"),
-    new PostComponent("Life sucks...", "My bae dumped me for some other guy :'( feeling so desperate..."),
-    new PostComponent("What if ?...", "Hey wassup ppl ! what do you guys think of Chinese restaurant owners " +
-      "selling sushi ? Personnally it doesn't bother me but I'd love to eat some real Japanese sushi from Japan sometime" +
-      ", too bad I'm low on cash x)")
-  ];
+  constructor() {
+    var firebaseConfig = {
+      apiKey: "AIzaSyCOSq5Z4wnYYB38tbzs2CVrgVh5P64KTcE",
+      authDomain: "http-client-demo-e17fa.firebaseapp.com",
+      databaseURL: "https://http-client-demo-e17fa.firebaseio.com",
+      projectId: "http-client-demo-e17fa",
+      storageBucket: "http-client-demo-e17fa.appspot.com",
+      messagingSenderId: "578418698884",
+      appId: "1:578418698884:web:8c41738c665dd7b1f830d1"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  }
 
 }
